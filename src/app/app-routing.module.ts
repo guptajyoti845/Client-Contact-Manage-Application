@@ -1,50 +1,58 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {ClientPageComponent} from './clients/client-page/client-page.component';
-import {CompanyPageComponent} from './company/company-page/company-page.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AboutPageComponent} from './about/about-page/about-page.component';
-import {CanActivateViaAuthGuard} from './CanActivateViaAuthGuard';
+import {ClientModule} from './clients/client.module';
+import {CompanyModule} from './company/comapny.module';
 
 const routes: Routes = [
   {
-    path: 'clients',
-    component: ClientPageComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
+    path: 'clients/new',
+    loadChildren: './clients/client.module#ClientModule'
   },
   {
-    path: 'client',
-    redirectTo: '/clients',
-    pathMatch: 'full',
+    path: 'clients/edit/:id',
+    loadChildren: './clients/client.module#ClientModule'
+  },
+
+  {
+    path: 'clients/search',
+    loadChildren: './clients/client.module#ClientModule'
   },
   {
-    path: 'company',
-    component: CompanyPageComponent,
+    path: 'clients/details/:id',
+    loadChildren: './clients/client.module#ClientModule'
   },
   {
-    path: 'clients/:id',
-    component: ClientPageComponent
+    path: 'company/new',
+    loadChildren: './company/company.module#CompanyModule'
   },
   {
-    path: '',
-    redirectTo: '/clients',
-    pathMatch: 'full',
+    path: 'company/search',
+    loadChildren: './company/company.module#CompanyModule'
+  },
+  {
+    path: 'company/details/:id',
+    loadChildren: './company/company.module#CompanyModule'
   },
   {
     path: 'about',
     component: AboutPageComponent
   },
   {
-    path: '**',
-    component: PageNotFoundComponent,
+    path: '',
+    redirectTo: '/clients/search',
+    pathMatch: 'full'
   },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), ClientModule, CompanyModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

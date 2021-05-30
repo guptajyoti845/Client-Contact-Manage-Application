@@ -1,0 +1,13 @@
+.client-list {
+  width: 100%;
+  margin-top: 20px;
+
+}
+
+.client-list mat-list-item span {
+  color: black;
+  width: 20%;
+}
+.client-list mat-list-item mat-icon {
+  color: black;
+}

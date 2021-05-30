@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Client} from '../Client';
 
 @Component({
   selector: 'app-client-form',
@@ -7,8 +8,18 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./client-form.component.css']
 })
 export class ClientFormComponent implements OnInit {
-
   clientForm: FormGroup;
+
+  @Input()
+  // @ts-ignore
+  client: Client;
+
+  @Input()
+  edit = false;
+
+  @Output()
+  saveClientEvent: EventEmitter<Client> = new EventEmitter();
+
   // creating new FormControls, with validation
   firstname = new FormControl('', Validators.required);
   lastname = new FormControl('', Validators.required);

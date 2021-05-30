@@ -12,7 +12,9 @@ import {NavigationComponent} from './navigation/navigation.component';
 import {AboutModule} from './about/about/about.module';
 import {CanActivateViaAuthGuard} from './CanActivateViaAuthGuard';
 import {AuthService} from './auth.service';
-
+import {HttpClientModule} from '@angular/common/http';
+import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './services/in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import {AuthService} from './auth.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
     BrowserAnimationsModule,
+    CustomMaterialModule,
     ClientModule,
     CompanyModule,
-    SharedModule,
-    CustomMaterialModule,
-    AboutModule
+    AboutModule,
+    SharedModule
   ],
   providers: [CanActivateViaAuthGuard, AuthService],
   bootstrap: [AppComponent]
