@@ -1,0 +1,14 @@
+<mat-toolbar>{{ title }}
+<button mat-button [matMenuTriggerFor]="clientMenu">Clients</button>
+<mat-menu #clientMenu="matMenu">
+  <button mat-menu-item (click)="goTo('clients')">Add New Client</button>
+  <button mat-menu-item>View All</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="companyMenu">Company</button>
+<mat-menu #companyMenu="matMenu">
+  <button mat-menu-item  (click)="goTo('company')">Add New Company</button>
+  <button mat-menu-item>View All</button>
+</mat-menu>
+<button mat-button (click)="goTo('about')">About</button>
+
+</mat-toolbar>
