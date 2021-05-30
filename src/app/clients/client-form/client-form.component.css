@@ -1,0 +1,10 @@
+.client-form {
+  padding-top: 20px;
+  margin-top: 40px;
+}
+.client-form mat-form-field {
+  width: 60%;
+}
+.client-form button {
+  font: 1em sans-serif;
+}
